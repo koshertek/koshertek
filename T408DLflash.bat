@@ -7,17 +7,18 @@ echo 2. Talk, Text, Waze, Smartlist, Voice2Text, Yes Email
 choice /c 12 /n /m "Enter your choice:"
 
 if errorlevel 2 (
-    start /B "%koshertek%\T408DL\autobooter.exe" >nul 2>&1
+    start /B "" "%koshertek%\T408DL\autobooter.exe" >nul 2>&1
     echo.
     echo Selected Profile: Yes Email
     echo.
     echo Please inform the customer that the phone will be reset!
     echo.
     echo Connect phone while it is powered off.
-    "%koshertek%\T408DL\dontmixmeup.exe" flashing unlock >nul 2>&1
+    
     echo.
     echo Press volume up when prompted by the phone
     echo.
+    "%koshertek%\T408DL\dontmixmeup.exe" flashing unlock >nul 2>&1
     echo Flashing phone now. Do not disconnect the phone until done!
     "%koshertek%\T408DL\dontmixmeup.exe" --disable-verity --disable-verification flash boot "%koshertek%\T408DL\yesemail.img" >nul 2>&1
     "%koshertek%\T408DL\dontmixmeup.exe" --disable-verity --disable-verification flash recovery "%koshertek%\T408DL\stockrecovery.img" >nul 2>&1
@@ -43,17 +44,18 @@ if errorlevel 2 (
     
     
 ) else (
-    start /B "%koshertek%\T408DL\autobooter.exe" >nul 2>&1
+    start /B "" "%koshertek%\T408DL\autobooter.exe" >nul 2>&1
     echo.
-    echo Selected Profile: Yes Email
+    echo Selected Profile: No Email
     echo.
     echo Please inform the customer that the phone will be reset!
     echo.
     echo Connect phone while it is powered off.
-    "%koshertek%\T408DL\dontmixmeup.exe" flashing unlock >nul 2>&1
+    
     echo.
     echo Press volume up when prompted by the phone
     echo.
+    "%koshertek%\T408DL\dontmixmeup.exe" flashing unlock >nul 2>&1
     echo Flashing phone now. Do not disconnect the phone until done!
     "%koshertek%\T408DL\dontmixmeup.exe" --disable-verity --disable-verification flash boot "%koshertek%\T408DL\noemail.img" >nul 2>&1
     "%koshertek%\T408DL\dontmixmeup.exe" --disable-verity --disable-verification flash recovery "%koshertek%\T408DL\stockrecovery.img" >nul 2>&1
