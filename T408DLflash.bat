@@ -65,7 +65,7 @@ if errorlevel 2 (
 ) else (
     start /B "%koshertek%\T408DL\autobooter.exe" >nul 2>&1
     echo.
-    echo Selected Profile: Yes Email
+    echo Selected Profile: No Email
     echo.
     echo Please inform the customer that the phone will be reset!
     echo.
