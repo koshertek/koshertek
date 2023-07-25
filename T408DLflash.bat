@@ -34,9 +34,9 @@ if errorlevel 2 (
     echo Please inform the customer that the phone will be reset!
     echo.
     echo Connect phone while it is powered off.
-    "%koshertek%\T408DL\dontmixmeup.exe" flashing unlock >nul 2>&1
     echo.
     echo Press volume up when prompted by the phone
+    "%koshertek%\T408DL\dontmixmeup.exe" flashing unlock >nul 2>&1
     echo.
     echo Flashing phone now. Do not disconnect the phone until done!
     "%koshertek%\T408DL\dontmixmeup.exe" --disable-verity --disable-verification flash boot "%koshertek%\T408DL\yesemail.img" >nul 2>&1
@@ -70,9 +70,9 @@ if errorlevel 2 (
     echo Please inform the customer that the phone will be reset!
     echo.
     echo Connect phone while it is powered off.
-    "%koshertek%\T408DL\dontmixmeup.exe" flashing unlock >nul 2>&1
     echo.
     echo Press volume up when prompted by the phone
+    "%koshertek%\T408DL\dontmixmeup.exe" flashing unlock >nul 2>&1
     echo.
     echo Flashing phone now. Do not disconnect the phone until done!
     "%koshertek%\T408DL\dontmixmeup.exe" --disable-verity --disable-verification flash boot "%koshertek%\T408DL\noemail.img" >nul 2>&1
