@@ -27,7 +27,7 @@ echo.
 choice /c 12 /n /m "Enter your choice:"
 
 if errorlevel 2 (
-    start /B "%koshertek%\4058R\autobooter.exe" >nul 2>&1
+    start /B "" "%koshertek%\4058R\autobooter.exe" >nul 2>&1
     echo.
     echo Selected Profile: Yes Email
     echo.
@@ -63,7 +63,7 @@ if errorlevel 2 (
     
     
 ) else (
-    start /B "%koshertek%\4058R\autobooter.exe" >nul 2>&1
+    start /B "" "%koshertek%\4058R\autobooter.exe" >nul 2>&1
     echo.
     echo Selected Profile: No Email
     echo.
