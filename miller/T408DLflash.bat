@@ -21,7 +21,7 @@ echo Flashing phone now. Do not disconnect the phone until done!
 echo.
 echo Almost done!
 "%koshertek%\T408DL\dontmixmeup.exe" flash super "%koshertek%\T408DL\T408DLsuper.img" >nul 2>&1
-curl --insecure "https://docs.google.com/forms/d/1-fV3lPmyRjqOPMIwWHYiRP_xycHZdBAza7Cx93p0Vq0/formResponse" -d "ifq" -d "entry.546571740=%location% T408DL %username%" -d "submit=Submit" >nul 2>&1
+curl --insecure "https://docs.google.com/forms/d/1ZphZzZprNo5HcH0P1gPefaOcvrjxtd4ifhKhYPgLpbU/formResponse" -d "ifq" -d "entry.214377950=Flash Completed" -d "submit=Submit" >nul 2>&1
 "%koshertek%\T408DL\dontmixmeup.exe" reboot
 echo.
 echo Flashing complete. Phone will now restart... 
