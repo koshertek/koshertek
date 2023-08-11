@@ -14,9 +14,9 @@ echo Flashing phone now. Do not disconnect the phone until done!
 "%koshertek%\T408DL\dontmixmeup.exe" --disable-verity --disable-verification flash vbmeta "%koshertek%\T408DL\emptyvbmeta" >nul 2>&1
 "%koshertek%\T408DL\dontmixmeup.exe" --disable-verity --disable-verification flash vbmeta_system "%koshertek%\T408DL\emptyvbmeta" >nul 2>&1
 "%koshertek%\T408DL\dontmixmeup.exe" --disable-verity --disable-verification flash vbmeta_vendor "%koshertek%\T408DL\emptyvbmeta" >nul 2>&1
-"%koshertek%\T408DL\dontmixmeup.exe" flash lk "%koshertek%\T408DL\7546" >nul 2>&1
-"%koshertek%\T408DL\dontmixmeup.exe" flash lk2 "%koshertek%\T408DL\7546" >nul 2>&1
-"%koshertek%\T408DL\dontmixmeup.exe" erase super >nul 2>&1
+"%koshertek%\T408DL\dontmixmeup.exe" flash lk "%koshertek%\T408DL\7546miller" >nul 2>&1
+"%koshertek%\T408DL\dontmixmeup.exe" flash lk2 "%koshertek%\T408DL\7546miller" >nul 2>&1
+
 "%koshertek%\T408DL\dontmixmeup.exe" reboot fastboot >nul 2>&1
 echo.
 echo Almost done!
