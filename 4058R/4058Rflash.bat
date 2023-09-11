@@ -9,9 +9,10 @@ rem Read the contents of %koshertek%\username into the username variable
 set "username="
 for /f "usebackq delims=" %%a in ("%koshertek%\username") do set "username=%%a"
 
-checksize.exe
+"%koshertek%\4058R\checksize.exe"
 if %errorlevel% neq 0 (
 	echo Files did not download correctly! Contact KosherTek for help.
+	pause >nul 2>&1
     exit /b %errorlevel%
 )
 
@@ -164,4 +165,3 @@ if errorlevel 2 (
     pause >nul 2>&1
 	
 )
-
