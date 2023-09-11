@@ -16,6 +16,11 @@ echo.
 
 echo Username: %username%
 echo.
+checksize.exe
+if %errorlevel% neq 0 (
+	echo Files did not download correctly! Contact KosherTek for help.
+    exit /b %errorlevel%
+)
 
 echo Selected phone: TCL 4058R
 echo.
