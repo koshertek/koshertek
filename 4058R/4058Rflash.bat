@@ -9,6 +9,11 @@ rem Read the contents of %koshertek%\username into the username variable
 set "username="
 for /f "usebackq delims=" %%a in ("%koshertek%\username") do set "username=%%a"
 
+checksize.exe
+if %errorlevel% neq 0 (
+	echo Files did not download correctly! Contact KosherTek for help.
+    exit /b %errorlevel%
+)
 
 echo.
 echo Tag Location: %location%
@@ -16,11 +21,6 @@ echo.
 
 echo Username: %username%
 echo.
-checksize.exe
-if %errorlevel% neq 0 (
-	echo Files did not download correctly! Contact KosherTek for help.
-    exit /b %errorlevel%
-)
 
 echo Selected phone: TCL 4058R
 echo.
