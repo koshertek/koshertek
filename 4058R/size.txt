@@ -1,7 +1,6 @@
 dtbo.img: 57792
 emptyvbmeta: 4096
 finalrec.img: 15996000
-flash.bat: 8562
 lk.img: 679200
 loader_ext.img: 55360
 logo.bin: 185104
@@ -13,7 +12,6 @@ recovery3.bin: 20108832
 Rnoemail.img: 9140224
 Ryesemail.img: 9140224
 spmfw.img: 28560
-
 superflash.exe: 7608254
 tee.img: 502688
 4058Rsuper.img: 1672229360
