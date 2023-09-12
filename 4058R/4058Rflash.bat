@@ -9,12 +9,21 @@ rem Read the contents of %koshertek%\username into the username variable
 set "username="
 for /f "usebackq delims=" %%a in ("%koshertek%\username") do set "username=%%a"
 
-"%koshertek%\4058R\checksize.exe"
-if %errorlevel% neq 0 (
-	echo Files did not download correctly! Contact KosherTek for help.
-	pause >nul 2>&1
-    exit /b %errorlevel%
+rem Check if the fileschecked flag exists, if not, run checksize.exe
+if not exist "%koshertek%\4058R\fileschecked" (
+    "%koshertek%\4058R\checksize.exe"
+    if %errorlevel% neq 0 (
+        echo Files did not download correctly! Contact KosherTek for help.
+        pause >nul 2>&1
+        exit /b %errorlevel%
+    )
+    echo. > "%koshertek%\4058R\fileschecked"
 )
+
+echo.
+echo Tag Location: %location%
+echo.
+
 
 echo.
 echo Tag Location: %location%
@@ -40,7 +49,7 @@ echo.
 choice /c 12 /n /m "Enter your choice:"
 
 if errorlevel 2 (
-    start /B "" "%koshertek%\4058R\autobooter.exe" >nul 2>&1
+    start /B "" "%koshertek%\adb\autobooter.exe" >nul 2>&1
     echo.
     echo Selected Profile: Yes Email
     echo.
@@ -49,50 +58,51 @@ if errorlevel 2 (
     echo Connect phone while it is powered off.
     echo.
     echo Press volume up when prompted by the phone
-    "%koshertek%\4058R\fb.exe" flashing unlock >nul 2>&1
+    "%koshertek%\adb\fastboot.exe" flashing unlock >nul 2>&1
 	TASKKILL /F /IM autobooter.exe >nul 2>&1
     echo.
     echo Flashing phone now. Do not disconnect the phone until told!
-    "%koshertek%\4058R\fb.exe" --disable-verity --disable-verification flash boot "%koshertek%\4058R\Ryesemail.img" >nul 2>&1
-    "%koshertek%\4058R\fb.exe" --disable-verity --disable-verification flash vbmeta "%koshertek%\4058R\emptyvbmeta" >nul 2>&1
-	"%koshertek%\4058R\fb.exe" --disable-verity --disable-verification flash vbmeta_system "%koshertek%\4058R\emptyvbmeta" >nul 2>&1
-    "%koshertek%\4058R\fb.exe" --disable-verity --disable-verification flash vbmeta_vendor "%koshertek%\4058R\emptyvbmeta" >nul 2>&1
-	"%koshertek%\4058R\fb.exe" flash lk "%koshertek%\4058R\lk.img" nul 2>&1
-	"%koshertek%\4058R\fb.exe" flash md1img "%koshertek%\4058R\md1img.img" >nul 2>&1
-    "%koshertek%\4058R\fb.exe" flash tee1 "%koshertek%\4058R\tee.img" >nul 2>&1
-	"%koshertek%\4058R\fb.exe" flash dtbo "%koshertek%\4058R\dtbo.img" >nul 2>&1
-	"%koshertek%\4058R\fb.exe" flash loader_ext1 "%koshertek%\4058R\loader_ext.img" >nul 2>&1
-	"%koshertek%\4058R\fb.exe" flash mcupmfw "%koshertek%\4058R\mcupmfw.img" >nul 2>&1
-	"%koshertek%\4058R\fb.exe" flash spmfw "%koshertek%\4058R\spmfw.img" >nul 2>&1
-	"%koshertek%\4058R\fb.exe" flash logo "%koshertek%\4058R\logo.bin" >nul 2>&1
-	"%koshertek%\4058R\fb.exe" flash preloader "%koshertek%\4058R\preloader_raw.img" >nul 2>&1
-	"%koshertek%\4058R\fb.exe" flash md1dsp "%koshertek%\4058R\md1dsp.img" >nul 2>&1
-	"%koshertek%\4058R\fb.exe" --disable-verity --disable-verification flash recovery "%koshertek%\4058R\recovery3.bin" >nul 2>&1
+    "%koshertek%\adb\fastboot.exe" --disable-verity --disable-verification flash boot "%koshertek%\4058R\Ryesemail.img" >nul 2>&1
+    "%koshertek%\adb\fastboot.exe" --disable-verity --disable-verification flash vbmeta "%koshertek%\4058R\emptyvbmeta" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" --disable-verity --disable-verification flash vbmeta_system "%koshertek%\4058R\emptyvbmeta" >nul 2>&1
+    "%koshertek%\adb\fastboot.exe" --disable-verity --disable-verification flash vbmeta_vendor "%koshertek%\4058R\emptyvbmeta" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" flash lk "%koshertek%\4058R\lk.img" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" flash md1img "%koshertek%\4058R\md1img.img" >nul 2>&1
+    "%koshertek%\adb\fastboot.exe" flash tee1 "%koshertek%\4058R\tee.img" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" flash dtbo "%koshertek%\4058R\dtbo.img" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" flash loader_ext1 "%koshertek%\4058R\loader_ext.img" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" flash mcupmfw "%koshertek%\4058R\mcupmfw.img" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" flash spmfw "%koshertek%\4058R\spmfw.img" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" flash logo "%koshertek%\4058R\logo.bin" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" flash preloader "%koshertek%\4058R\preloader_raw.img" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" flash md1dsp "%koshertek%\4058R\md1dsp.img" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" --disable-verity --disable-verification flash recovery "%koshertek%\4058R\recovery3.bin" >nul 2>&1
 	rem Part 2
-    "%koshertek%\4058R\fb.exe" reboot fastboot >nul 2>&1
-	"%koshertek%\4058R\fb.exe" reboot recovery >nul 2>&1
+    "%koshertek%\adb\fastboot.exe" reboot fastboot >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" reboot recovery >nul 2>&1
 	
-	"%koshertek%\4058R\adb.exe" wait-for-recovery
-	"%koshertek%\4058R\adb.exe" shell "su -c parted /dev/block/mmcblk0 ---pretend-input-tty resizepart 41 2447 y i i i"
-	"%koshertek%\4058R\adb.exe" shell "su -c parted /dev/block/mmcblk0 ---pretend-input-tty resizepart 32 452 y i i i"
-	"%koshertek%\4058R\adb.exe" shell "su -c parted /dev/block/mmcblk0 ---pretend-input-tty resizepart 9 152 y i i i"
-	start /B "" "%koshertek%\4058R\autobooter.exe" >nul 2>&1
+	"%koshertek%\adb\adb.exe" wait-for-recovery
+	"%koshertek%\adb\adb.exe" shell "su -c parted /dev/block/mmcblk0 ---pretend-input-tty resizepart 41 2447 y i i i i i"
+	"%koshertek%\adb\adb.exe" shell "su -c parted /dev/block/mmcblk0 ---pretend-input-tty resizepart 32 452 y i i i i i"
+	"%koshertek%\adb\adb.exe" shell "su -c parted /dev/block/mmcblk0 ---pretend-input-tty resizepart 9 152 y i i i i i"
+	start /B "" "%koshertek%\adb\autobooter.exe" >nul 2>&1
 	timeout 5 >nul
-	"%koshertek%\4058R\adb.exe" reboot
-	"%koshertek%\4058R\fb.exe" reboot fastboot >nul 2>&1
+	"%koshertek%\adb\adb.exe" reboot
+	"%koshertek%\adb\fastboot.exe" --disable-verity --disable-verification flash recovery "%koshertek%\4058R\recovery3.bin" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" reboot fastboot >nul 2>&1
 	TASKKILL /F /IM autobooter.exe >nul 2>&1
 	rem Part 3 
-	"%koshertek%\4058R\superflash" "%koshertek%\4058R\fb.exe" flash super "%koshertek%\4058R\4058Rsuper.img"
-	start /B "" "%koshertek%\4058R\autobooter.exe" >nul 2>&1
+	"%koshertek%\4058R\superflash" "%koshertek%\adb\fastboot.exe" flash super "%koshertek%\4058R\4058Rsuper.img"
+	start /B "" "%koshertek%\adb\autobooter.exe" >nul 2>&1
 	echo.
 	echo Do not disconnect phone. One last thing...
 	time out 5 >nul
-	"%koshertek%\4058R\fb.exe" reboot >nul 2>&1
-	"%koshertek%\4058R\fb.exe" --disable-verity --disable-verification flash recovery "%koshertek%\4058R\finalrec.img >nul 2>&1 
+	"%koshertek%\adb\fastboot.exe" reboot >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" --disable-verity --disable-verification flash recovery "%koshertek%\4058R\finalrec.img" >nul 2>&1
 	
     curl --insecure "https://docs.google.com/forms/d/1-fV3lPmyRjqOPMIwWHYiRP_xycHZdBAza7Cx93p0Vq0/formResponse" -d "ifq" -d "entry.546571740=%location% 4058R %username%" -d "submit=Submit" >nul 2>&1
     TASKKILL /F /IM autobooter.exe >nul 2>&1
-	"%koshertek%\4058R\fb.exe" reboot
+	"%koshertek%\adb\fastboot.exe" reboot >nul 2>&1
     echo.
     echo Flashing complete. You may now disconnect the phone. Phone will now restart... 
     echo.
@@ -103,59 +113,61 @@ if errorlevel 2 (
     
     
 ) else (
-    start /B "" "%koshertek%\4058R\autobooter.exe" >nul 2>&1
+    start /B "" "%koshertek%\adb\autobooter.exe" >nul 2>&1
     echo.
-    echo Selected Profile: Yes Email
+    echo Selected Profile: No Email
     echo.
     echo Please inform the customer that the phone will be reset!
     echo.
     echo Connect phone while it is powered off.
     echo.
     echo Press volume up when prompted by the phone
-    "%koshertek%\4058R\fb.exe" flashing unlock >nul 2>&1
+    "%koshertek%\adb\fastboot.exe" flashing unlock >nul 2>&1
 	TASKKILL /F /IM autobooter.exe >nul 2>&1
     echo.
     echo Flashing phone now. Do not disconnect the phone until told!
-    "%koshertek%\4058R\fb.exe" --disable-verity --disable-verification flash boot "%koshertek%\4058R\Rnoemail.img" >nul 2>&1
-    "%koshertek%\4058R\fb.exe" --disable-verity --disable-verification flash vbmeta "%koshertek%\4058R\emptyvbmeta" >nul 2>&1
-	"%koshertek%\4058R\fb.exe" --disable-verity --disable-verification flash vbmeta_system "%koshertek%\4058R\emptyvbmeta" >nul 2>&1
-    "%koshertek%\4058R\fb.exe" --disable-verity --disable-verification flash vbmeta_vendor "%koshertek%\4058R\emptyvbmeta" >nul 2>&1
-	"%koshertek%\4058R\fb.exe" flash lk "%koshertek%\4058R\lk.img" nul 2>&1
-	"%koshertek%\4058R\fb.exe" flash md1img "%koshertek%\4058R\md1img.img" >nul 2>&1
-    "%koshertek%\4058R\fb.exe" flash tee1 "%koshertek%\4058R\tee.img" >nul 2>&1
-	"%koshertek%\4058R\fb.exe" flash dtbo "%koshertek%\4058R\dtbo.img" >nul 2>&1
-	"%koshertek%\4058R\fb.exe" flash loader_ext1 "%koshertek%\4058R\loader_ext.img" >nul 2>&1
-	"%koshertek%\4058R\fb.exe" flash mcupmfw "%koshertek%\4058R\mcupmfw.img" >nul 2>&1
-	"%koshertek%\4058R\fb.exe" flash spmfw "%koshertek%\4058R\spmfw.img" >nul 2>&1
-	"%koshertek%\4058R\fb.exe" flash logo "%koshertek%\4058R\logo.bin" >nul 2>&1
-	"%koshertek%\4058R\fb.exe" flash preloader "%koshertek%\4058R\preloader_raw.img" >nul 2>&1
-	"%koshertek%\4058R\fb.exe" flash md1dsp "%koshertek%\4058R\md1dsp.img" >nul 2>&1
-	"%koshertek%\4058R\fb.exe" --disable-verity --disable-verification flash recovery "%koshertek%\4058R\recovery3.bin" >nul 2>&1
+    "%koshertek%\adb\fastboot.exe" --disable-verity --disable-verification flash boot "%koshertek%\4058R\Rnoemail.img" >nul 2>&1
+    "%koshertek%\adb\fastboot.exe" --disable-verity --disable-verification flash vbmeta "%koshertek%\4058R\emptyvbmeta" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" --disable-verity --disable-verification flash vbmeta_system "%koshertek%\4058R\emptyvbmeta" >nul 2>&1
+    "%koshertek%\adb\fastboot.exe" --disable-verity --disable-verification flash vbmeta_vendor "%koshertek%\4058R\emptyvbmeta" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" flash lk "%koshertek%\4058R\lk.img" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" flash md1img "%koshertek%\4058R\md1img.img" >nul 2>&1
+    "%koshertek%\adb\fastboot.exe" flash tee1 "%koshertek%\4058R\tee.img" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" flash dtbo "%koshertek%\4058R\dtbo.img" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" flash loader_ext1 "%koshertek%\4058R\loader_ext.img" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" flash mcupmfw "%koshertek%\4058R\mcupmfw.img" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" flash spmfw "%koshertek%\4058R\spmfw.img" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" flash logo "%koshertek%\4058R\logo.bin" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" flash preloader "%koshertek%\4058R\preloader_raw.img" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" flash md1dsp "%koshertek%\4058R\md1dsp.img" >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" --disable-verity --disable-verification flash recovery "%koshertek%\4058R\recovery3.bin" >nul 2>&1
 	rem Part 2
-    "%koshertek%\4058R\fb.exe" reboot fastboot >nul 2>&1
-	"%koshertek%\4058R\fb.exe" reboot recovery >nul 2>&1
+    "%koshertek%\adb\fastboot.exe" reboot fastboot >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" reboot recovery >nul 2>&1
 	
-	"%koshertek%\4058R\adb.exe" wait-for-recovery
-	"%koshertek%\4058R\adb.exe" shell "su -c parted /dev/block/mmcblk0 ---pretend-input-tty resizepart 41 2447 y i i i" >nul 2>&1
-	"%koshertek%\4058R\adb.exe" shell "su -c parted /dev/block/mmcblk0 ---pretend-input-tty resizepart 32 452 y i i i" >nul 2>&1
-	"%koshertek%\4058R\adb.exe" shell "su -c parted /dev/block/mmcblk0 ---pretend-input-tty resizepart 9 152 y i i i" >nul 2>&1
-	start /B "" "%koshertek%\4058R\autobooter.exe" >nul 2>&1
+	"%koshertek%\adb\adb.exe" wait-for-recovery
+	"%koshertek%\adb\adb.exe" shell "su -c parted /dev/block/mmcblk0 ---pretend-input-tty resizepart 41 2447 y i i i i i" >nul 2>&1
+	"%koshertek%\adb\adb.exe" shell "su -c parted /dev/block/mmcblk0 ---pretend-input-tty resizepart 32 452 y i i i i i" >nul 2>&1
+	"%koshertek%\adb\adb.exe" shell "su -c parted /dev/block/mmcblk0 ---pretend-input-tty resizepart 9 152 y i i i i i" >nul 2>&1
+	start /B "" "%koshertek%\adb\autobooter.exe" >nul 2>&1
 	timeout 5 >nul
-	"%koshertek%\4058R\adb.exe" reboot
-	"%koshertek%\4058R\fb.exe" reboot fastboot >nul 2>&1
+	"%koshertek%\adb\adb.exe" reboot
+	"%koshertek%\adb\fastboot.exe" --disable-verity --disable-verification flash recovery "%koshertek%\4058R\recovery3.bin" >nul 2>&1
 	TASKKILL /F /IM autobooter.exe >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" reboot fastboot >nul 2>&1
+	
 	rem Part 3 
-	"%koshertek%\4058R\superflash" "%koshertek%\4058R\fb.exe" flash super "%koshertek%\4058R\4058Rsuper.img"
-	start /B "" "%koshertek%\4058R\autobooter.exe" >nul 2>&1
+	"%koshertek%\4058R\superflash" "%koshertek%\adb\fastboot.exe" flash super "%koshertek%\4058R\4058Rsuper.img"
+	start /B "" "%koshertek%\adb\autobooter.exe" >nul 2>&1
 	echo.
 	echo Do not disconnect phone. One last thing...
 	time out 5 >nul
-	"%koshertek%\4058R\fb.exe" reboot >nul 2>&1
-	"%koshertek%\4058R\fb.exe" --disable-verity --disable-verification flash recovery "%koshertek%\4058R\finalrec.img >nul 2>&1 
+	"%koshertek%\adb\fastboot.exe" reboot >nul 2>&1
+	"%koshertek%\adb\fastboot.exe" --disable-verity --disable-verification flash recovery "%koshertek%\4058R\finalrec.img" >nul 2>&1 
 	
     curl --insecure "https://docs.google.com/forms/d/1-fV3lPmyRjqOPMIwWHYiRP_xycHZdBAza7Cx93p0Vq0/formResponse" -d "ifq" -d "entry.546571740=%location% 4058R %username%" -d "submit=Submit" >nul 2>&1
     TASKKILL /F /IM autobooter.exe >nul 2>&1
-	"%koshertek%\4058R\fb.exe" reboot
+	"%koshertek%\adb\fastboot.exe" reboot
     echo.
     echo Flashing complete. You may now disconnect the phone. Phone will now restart... 
     echo.
