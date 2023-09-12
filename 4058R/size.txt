@@ -1,4 +1,3 @@
-autobooter.exe: 6797198
 dtbo.img: 57792
 emptyvbmeta: 4096
 finalrec.img: 15996000
