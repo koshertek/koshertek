@@ -1,0 +1,17 @@
+dtbo.img: 57792
+emptyvbmeta: 4096
+finalrec.img: 15996000
+lk.img: 679200
+loader_ext.img: 55360
+logo.bin: 185104
+mcupmfw.img: 7232
+md1dsp.img: 6885872
+md1img.img: 23455680
+preloader_raw.img: 122024
+recovery3.bin: 20108832
+R1.img: 9140224
+R2.img: 9140224
+spmfw.img: 28560
+superflash.exe: 7608254
+tee.img: 502688
+4058Rsuper.img: 1716269564
