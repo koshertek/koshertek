@@ -27,11 +27,6 @@ echo.
 echo Tag Location: %location%
 echo.
 
-
-echo.
-echo Tag Location: %location%
-echo.
-
 echo Username: %username%
 echo.
 
