@@ -78,7 +78,7 @@ if errorlevel 2 (
     rem Part 2
     "%koshertek%\adb\fastboot.exe" reboot fastboot >nul 2>&1
     "%koshertek%\adb\fastboot.exe" reboot recovery >nul 2>&1
-    
+    timeout 10 >nul
     "%koshertek%\adb\adb.exe" wait-for-recovery >nul 2>&1
     "%koshertek%\adb\adb.exe" shell "su -c parted /dev/block/mmcblk0 ---pretend-input-tty resizepart 41 2447 y i i i i i" >nul 2>&1
     "%koshertek%\adb\adb.exe" shell "su -c parted /dev/block/mmcblk0 ---pretend-input-tty resizepart 32 452 y i i i i i" >nul 2>&1
@@ -142,7 +142,7 @@ if errorlevel 2 (
     rem Part 2
     "%koshertek%\adb\fastboot.exe" reboot fastboot >nul 2>&1
     "%koshertek%\adb\fastboot.exe" reboot recovery >nul 2>&1
-	
+    timeout 10 >nul
     "%koshertek%\adb\adb.exe" wait-for-recovery >nul 2>&1
     "%koshertek%\adb\adb.exe" shell "su -c parted /dev/block/mmcblk0 ---pretend-input-tty resizepart 41 2447 y i i i i i" >nul 2>&1
     "%koshertek%\adb\adb.exe" shell "su -c parted /dev/block/mmcblk0 ---pretend-input-tty resizepart 32 452 y i i i i i" >nul 2>&1
