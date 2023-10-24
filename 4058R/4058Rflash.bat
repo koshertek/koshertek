@@ -33,16 +33,16 @@ echo.
 set /p choice=Enter the profile number and press enter: 
 
 if "%choice%"=="1" (
-    set "boot='%koshertek%\4058R\noenos.img'"
+    set "boot=%koshertek%\4058R\noenos.img"
 	set "prof=Talk, Text, Waze, Voice2Text"
 ) else if "%choice%"=="2" (
-    set "boot='%koshertek%\4058R\noemail.img'"
+    set "boot=%koshertek%\4058R\noemail.img"
 	set "prof=Talk, Text, Waze, Voice2Text, Smartlist"
 ) else if "%choice%"=="3" (
-    set "boot='%koshertek%\4058R\yesemailnos.img'"
+    set "boot=%koshertek%\4058R\yesemailnos.img"
 	set "prof=Talk, Text, Waze, Voice2Text, Email"
 ) else if "%choice%"=="4" (
-    set "boot='%koshertek%\4058R\yesemail.img'"
+    set "boot=%koshertek%\4058R\yesemail.img"
 	set "prof=Talk, Text, Waze, Voice2Text, Smartlist, Email"
 ) else (
 	cls
