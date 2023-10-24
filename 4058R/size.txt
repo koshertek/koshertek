@@ -9,8 +9,10 @@ md1dsp.img: 6885872
 md1img.img: 23455680
 preloader_raw.img: 122024
 recovery3.bin: 20108832
-Rnoemail.img: 9140224
-Ryesemail.img: 9140224
+noemail.img: 9140224
+noenos.img: 9140224
+yesemailnos.img: 9140224
+yesemail.img: 9140224
 spmfw.img: 28560
 superflash.exe: 7608254
 tee.img: 502688
