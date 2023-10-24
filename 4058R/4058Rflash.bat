@@ -137,7 +137,7 @@ timeout 10 >nul
 "%koshertek%\adb\adb.exe" shell "su -c parted /dev/block/mmcblk0 ---pretend-input-tty resizepart 32 452 y i i i i i" >nul 2>&1
 "%koshertek%\adb\adb.exe" shell "su -c parted /dev/block/mmcblk0 ---pretend-input-tty resizepart 9 152 y i i i i i" >nul 2>&1
 start /B "" "%koshertek%\adb\autobooter.exe" >nul 2>&1
-timeout 5 >nul
+timeout 15 >nul
 "%koshertek%\adb\adb.exe" reboot >nul 2>&1
 "%koshertek%\adb\fastboot.exe" --disable-verity --disable-verification flash recovery "%koshertek%\4058R\recovery3.bin" >nul 2>&1
 "%koshertek%\adb\fastboot.exe" reboot fastboot >nul 2>&1
