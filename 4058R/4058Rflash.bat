@@ -147,7 +147,7 @@ rem Part 3
 start /B "" "%koshertek%\adb\autobooter.exe" >nul 2>&1
 echo.
 echo Do not disconnect phone. One last thing...
-timeout 10 >nul 2>&1
+timeout 15 >nul 2>&1
 "%koshertek%\adb\fastboot.exe" reboot >nul 2>&1
 "%koshertek%\adb\fastboot.exe" --disable-verity --disable-verification flash recovery "%koshertek%\4058R\finalrec.img" >nul 2>&1
 	
