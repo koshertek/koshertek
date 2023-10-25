@@ -155,6 +155,11 @@ curl --insecure "https://docs.google.com/forms/d/1-fV3lPmyRjqOPMIwWHYiRP_xycHZdB
 TASKKILL /F /IM autobooter.exe >nul 2>&1
 "%koshertek%\adb\fastboot.exe" reboot >nul 2>&1
 echo.
+cls
+echo ##############################################
+echo              KosherTek Flash Tool             
+echo ##############################################
+echo.
 echo Flashing complete. You may now disconnect the phone. Phone will now restart... 
 echo.
 echo Please give customer instructions paper.
