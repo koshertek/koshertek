@@ -18,7 +18,7 @@ echo Username: %username%
 echo.
 
 :choices:
-
+cls
 
 echo Select a profile to install:
 echo.
