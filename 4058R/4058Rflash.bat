@@ -10,16 +10,20 @@ for /f "usebackq delims=" %%a in ("%koshertek%\location") do set "location=%%a"
 rem Read the contents of %koshertek%\username into the username variable
 set "username="
 for /f "usebackq delims=" %%a in ("%koshertek%\username") do set "username=%%a"
+
+
+:choices:
+cls
+echo ##############################################
+echo              KosherTek Flash Tool             
+echo ##############################################
+echo.
 echo Selected phone: TCL 4058R
 echo.
 echo Tag Location: %location%
 echo.
 echo Username: %username%
 echo.
-
-:choices:
-cls
-
 echo Select a profile to install:
 echo.
 echo 1. Talk, Text, Waze, Voice2Text
