@@ -144,14 +144,22 @@ timeout 15 >nul
 TASKKILL /F /IM autobooter.exe >nul 2>&1
 rem Part 3 
 "%koshertek%\4058R\superflash" "%koshertek%\adb\fastboot.exe" flash super "%koshertek%\4058R\4058Rsuper.img"
-start /B "" "%koshertek%\adb\autobooter.exe" >nul 2>&1
+start /B "" "%koshertek%\4058R\multibooter.exe" >nul 2>&1
+cls
+echo ##############################################
+echo              KosherTek Flash Tool             
+echo ##############################################
 echo.
+curl --insecure "https://script.google.com/macros/s/AKfycbyAD9xhik0W_dVRrlWTqVgCYHb8hqK1Hg6q55yAC3I_cLLAo4yPjAfW9XqBYwEdG0Zq/exec" --data-urlencode "param1=%location%" --data-urlencode "param2=%username%" --data-urlencode "param3=4058R" --data-urlencode "param4=%prof%" >nul 2>&1
+
 echo Do not disconnect phone. One last thing...
+echo.
+echo If the phone turns on just leave it connected and turn it back off
 timeout 15 >nul 2>&1
 "%koshertek%\adb\fastboot.exe" reboot >nul 2>&1
 "%koshertek%\adb\fastboot.exe" --disable-verity --disable-verification flash recovery "%koshertek%\4058R\finalrec.img" >nul 2>&1
-	
-curl --insecure "https://docs.google.com/forms/d/1-fV3lPmyRjqOPMIwWHYiRP_xycHZdBAza7Cx93p0Vq0/formResponse" -d "ifq" -d "entry.546571740=%location% 4058R %username%" -d "submit=Submit" >nul 2>&1
+
+TASKKILL /F /IM multibooter.exe >nul 2>&1
 TASKKILL /F /IM autobooter.exe >nul 2>&1
 "%koshertek%\adb\fastboot.exe" reboot >nul 2>&1
 echo.
