@@ -11,7 +11,19 @@ rem Read the contents of %koshertek%\username into the username variable
 set "username="
 for /f "usebackq delims=" %%a in ("%koshertek%\username") do set "username=%%a"
 
+rem Check if the fileschecked flag exists
+if not exist "%koshertek%\4058R\fileschecked" (
+    "%koshertek%\4058R\checksize.exe"
 
+    rem Check the errorlevel and act accordingly
+    if errorlevel 1 (
+        echo Files did not download correctly! Contact KosherTek for help.
+        pause >nul 2>&1
+        exit /b 1
+    ) else (
+        echo. > "%koshertek%\4058R\fileschecked"
+    )
+)
 :choices:
 cls
 echo ##############################################
@@ -63,19 +75,7 @@ if "%choice%"=="1" (
 
 
 
-rem Check if the fileschecked flag exists
-if not exist "%koshertek%\4058R\fileschecked" (
-    "%koshertek%\4058R\checksize.exe"
 
-    rem Check the errorlevel and act accordingly
-    if errorlevel 1 (
-        echo Files did not download correctly! Contact KosherTek for help.
-        pause >nul 2>&1
-        exit /b 1
-    ) else (
-        echo. > "%koshertek%\4058R\fileschecked"
-    )
-)
 
 cls
 echo ##############################################
