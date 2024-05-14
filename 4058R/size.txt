@@ -17,3 +17,4 @@ spmfw.img: 28560
 superflash.exe: 7608254
 tee.img: 502688
 4058Rsuper.img: 1742483964
+pgpt: 17408
